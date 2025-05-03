@@ -1,31 +1,23 @@
 
 import './App.css'
-import ListGroup from './Components/ListGroup'
-import Alert from './Components/Alert'
-import Button from './Components/button'
-import { useState } from 'react'
+
+import Home from './pages/Home'
+import About from './pages/About'
+import Chat from './pages/Chat'
+
+import { Routes, Route, NavLink } from "react-router-dom";
+import Navigation from "./Components/Navigation";
 
 function App() {
-
-  const items = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']
-  const heading = 'Cities'
-  const handleSelectItem = (item: string) => {
-    console.log(item)
-  }
-
-  const [alertVisible, setAlertVisible] = useState(false)
-
+  
   return (
     <>
-      <ListGroup items={items} heading={heading} onSelectItem={handleSelectItem} />
-      <Button onClick={() => setAlertVisible(true)}>Show Alert</Button>
-      {
-      alertVisible 
-      && 
-      <Alert onClose={() => setAlertVisible(false)}>
-        <h1>World</h1>
-        <p>This is a paragraph</p>
-      </Alert>}
+      <Navigation />
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/" element={ <Home />} />
+      </Routes>
     </>
   )
 }
